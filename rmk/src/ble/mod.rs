@@ -102,6 +102,12 @@ where
             appearance: &appearance::human_interface_device::KEYBOARD,
         }))
         .unwrap();
+        if let Some(gamepad_config) = rmk_config.gamepad.as_ref() {
+            let gamepad_server = Server::new_with_config(GapConfig::Peripheral(PeripheralConfig {
+                name: rmk_config.device_config.product_name,
+                appearance: &appearance::human_interface_device::GAMEPAD
+            }));
+        }
 
         server
             .set(

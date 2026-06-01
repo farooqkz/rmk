@@ -11,7 +11,7 @@ pub use crate::{
     BleConfig, ChipConfig, CommunicationProtocol, DependencyConfig, DisplayConfig, DisplayDriver, EncoderConfig,
     EncoderResolution, I2cConfig, InputDeviceConfig, Iqs5xxConfig, Iqs5xxI2cConfig, JoystickConfig, KeyInfo,
     LightConfig, MatrixConfig, MatrixType, OutputConfig, PinConfig, Pmw33xxConfig, Pmw33xxType, Pmw3610Config,
-    PointingDeviceConfig, SerialConfig, SpiConfig, SplitBoardConfig, SplitConfig,
+    PointingDeviceConfig, SerialConfig, SpiConfig, SplitBoardConfig, SplitConfig, GamepadConfig
 };
 
 /// Resolved storage hardware config
@@ -33,6 +33,7 @@ pub struct Hardware {
     pub display: Option<DisplayConfig>,
     pub output: Vec<OutputConfig>,
     pub dependency: DependencyConfig,
+    pub gamepad: Option<GamepadConfig>
 }
 
 impl crate::KeyboardTomlConfig {
@@ -57,6 +58,7 @@ impl crate::KeyboardTomlConfig {
         let display = self.get_display_config();
         let output = self.get_output_config()?;
         let dependency = self.get_dependency_config();
+        let gamepad = self.get_gamepad_config();
         Ok(Hardware {
             chip,
             chip_config,
@@ -67,6 +69,7 @@ impl crate::KeyboardTomlConfig {
             display,
             output,
             dependency,
+            gamepad
         })
     }
 }

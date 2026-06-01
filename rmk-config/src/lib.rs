@@ -77,6 +77,7 @@ pub struct KeyboardTomlConfig {
     display: Option<DisplayConfig>,
     /// Output Pin config
     output: Option<Vec<OutputConfig>>,
+    gamepad: Option<GamepadConfig>,
     /// Set host configurations
     pub(crate) host: Option<HostConfig>,
     /// RMK config constants
@@ -1140,6 +1141,13 @@ impl KeyboardTomlConfig {
     pub(crate) fn get_dependency_config(&self) -> DependencyConfig {
         self.dependency.clone().unwrap_or_default()
     }
+}
+
+
+#[derive(Clone, Debug, Default, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct GamepadConfig {
+
 }
 
 #[cfg(test)]
