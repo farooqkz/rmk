@@ -1150,6 +1150,12 @@ pub struct GamepadConfig {
 
 }
 
+impl KeyboardTomlConfig {
+    pub(crate) fn get_gamepad_config(&self) -> Result<Option<GamepadConfig>, String>{
+        let gamepad_config = self.gamepad.clone();
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
